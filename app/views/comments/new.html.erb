@@ -1,0 +1,42 @@
+<%= image_tag "navbar.png" ,height:"50px" ,width:"1300px" %>
+<br>
+<br>
+<br>
+
+  
+<div class="container" >
+<div class="card text-center" style="max-width: 1200px; max-height: 1100px;">
+<div class="card-body">
+<h4 class="card-title"><%= @post.title %></h4>
+<img src="<%= @post.image_url %>" , style="max-width: 950px; max-height: 850px;", alt="Photo of sunset">
+<div class="card-body">
+<%= link_to "#{@post.likes.count} claps", "likes/#{@post.id}", method: "post", class:"card-link" %></li>
+<%= link_to "#{@post.user_comments.count} comments", "comments/#{@post.id}", method: "get", class:"card-link" %></li>	</div></div></div><br>
+<%= link_to "comments", "#",id:"commentbutton" %>
+
+
+<% post_id = params[:id] %>
+
+    <div class="card my-4" style="max-width: 45rem;">
+            <%= label_tag(:comments, "comments:", class:"card-header") %>
+            <div class="card-body">
+             <%= form_tag("/comments/#{post_id}", method: "post") do %>   
+               <%= text_area(:comment , :title, rows: 3 , cols: 50 ,class: "form-group") %>
+                <%= submit_tag("create", class:"btn btn-primary") %>
+             <% end %>
+            </div>
+             <% if flash[:danger] %>
+                <div class="alert alert-danger" role="alert"><%= flash[:danger] %></div>
+                <% end %>
+          </div>
+    </div>
+    <section id="comment-section">
+   <% @comments.each do |comment| %>
+    <div class="card bg-light mb-3" style="max-width: 45rem;">
+    <h5 class="card-header"><%=User.find_by_id(comment.user_id).username %></h5>
+    <div class="card-body">
+    <p class="card-text"> <%= comment.comments %></p>
+    </div>
+</div>
+<% end %>
+</section>

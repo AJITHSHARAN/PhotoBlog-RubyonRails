@@ -1,0 +1,38 @@
+<%= image_tag "navbar.png" ,height:"50px" ,width:"1300px" %>
+<br>
+<br>
+<br>
+<% if flash[:success] %>
+    <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+  <% end %>
+<% if current_user.present? %>  
+<% if current_user.role ==  true %>
+<h3>admin</h3>
+ <%= link_to 'New photo', new_post_path , class:"nav-link js-scroll-trigger" %>
+<% end %>
+<% end %>
+<div class='container'>
+<div class='row'>
+<% @post.each do |post| %>
+
+<div class='col-4'>
+<div class="card text-center" style="max-width: 400px; max-height: 315px;">
+
+<!-- Heading -->
+<div class="card-body">
+<h4 class="card-title"><%= post.title %></h4>
+<%= link_to image_tag(post.image_url , width: '300' , height: '200'), "posts/#{post.id}", method: "get" %>
+<div class="card-body">
+<%= link_to "#{post.likes.count} claps", "likes/#{post.id}", method: "post", class:"card-link" %></li>
+<%= link_to "#{post.user_comments.count} comments", "comments/#{post.id}", method: "get", class:"card-link" %></li>
+ 
+
+</div>
+<br>
+</div>
+</div>
+<br>
+</div>
+<% end %>
+</div>
+</div>

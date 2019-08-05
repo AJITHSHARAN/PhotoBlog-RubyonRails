@@ -1,0 +1,5 @@
+Hi <%= @user.username %>
+
+Thanks for registering! To confirm your registration click the URL below.
+
+<%= "http://localhost:3000/user/#{@user.auth_token}/confirm_email" %>

@@ -1,0 +1,46 @@
+<!-- <div class="card mb-3">
+  <img class="card-img-top" src="" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+     <p class="card-text">This is a wider card with supporting text below as a natural ead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-muted></small></p> 
+  </div>
+</div> -->
+<%= image_tag "navbar.png" ,height:"50px" ,width:"1300px" %>
+<br>
+<br>
+<br>
+<div class="container">
+ <div class="card">
+  <div class="card-body">
+  <h5 class="card-title" style="text-align: center;"><%= @post.title %></h5>
+    <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+   </div>
+   <div class="row">
+  	<div class="col-7">
+  <img class="card-img-bottom" src="<%= @post.image_url %>" alt="Card image cap"  style="max-height: 700px; max-width: 800px; ">
+</div>
+<div class="col-5" style="text-align: center;">
+	<br>
+	
+<h3>ISO           :</h3><p><%= @post.iso %></p>
+<h3>Aperture      :</h3><p><%= @post.aperture %></p>
+<h3>Shutterspeed  :</h3><p><%= @post.shutterspeed %></p>
+<h3>Created by    :</h3><p>12.11.2018</p>
+<h3>Shot by       :</h3><p>Ajithkumar</p>	
+</div>
+</div>
+<div class="row">
+	<div class="col-12">
+<br>
+<div class="container">
+<%= link_to "#{@post.likes.count} claps", "/likes/#{@post.id}", method: "post", class:"card-link" %>
+<%= link_to "#{@post.user_comments.count} comments", "/comments/#{@post.id}", method: "get", class:"card-link" %></div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+
